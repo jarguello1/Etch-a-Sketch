@@ -130,7 +130,7 @@ function newGrid() {
     resizeBoxes();
 }
 
-//last thing change the size of the boxes so that its always n x n dimensions
+//function to change the size of the boxes to always be square inside the grid
 function resizeBoxes() {
     const gridSquare = document.querySelectorAll('.gridSquare');
     let size = (800 / dimensions) - 2;
