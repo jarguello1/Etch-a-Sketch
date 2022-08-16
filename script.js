@@ -29,10 +29,12 @@ grid.setAttribute('id', 'grid');
 
 container.appendChild(grid);
 
+let currentColor = 'black';
+
 // function to change color of the gridboxes
 function changeColorBlack(e) {
     let block = e.target;
-    block.setAttribute('style', 'background: black;'); 
+    block.style.backgroundColor = currentColor; 
 }
 
 //Create boxes in the grid

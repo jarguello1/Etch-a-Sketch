@@ -23,6 +23,7 @@ body {
 #grid {
 	border: 2px solid black;
 	background-color: #646464;
+	border: 0px;
 	display: flex;
 	flex-wrap: wrap;
 	width: 800px;
