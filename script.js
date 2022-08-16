@@ -122,4 +122,15 @@ function newGrid() {
     changeBoxSize()
     deleteBoxes();
     createBoxes(dimensions);
+    resizeBoxes();
+}
+
+//last thing change the size of the boxes so that its always n x n dimensions
+function resizeBoxes() {
+    const gridSquare = document.querySelectorAll('.gridSquare');
+    let size = (800 / dimensions) - 2;
+    gridSquare.forEach(square => {
+        square.style.height = `${size}px`
+        square.style.width = `${size}px`
+    });
 }
