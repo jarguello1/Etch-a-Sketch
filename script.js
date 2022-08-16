@@ -38,17 +38,26 @@ for (let i = 0; i < 16; i++) {
     }
 }
 
+function changeBackgroundColor() {
+    let block = document.getElementById('grid')
+    block.setAttribute('style', 'background: black;')
+}
 
 //Create container for the buttons that toggle different options
 buttonContainer.setAttribute('id', 'buttonContainer');
 container.appendChild(buttonContainer);
 
 //Create buttons for current options
-let buttonText = ['Toggle Color', 'Toggle Rainbow', 'Toggle Fill', 'Clear']
+let buttonText = ['Eraser', 'Rainbow', 'Fill', 'Clear']
 buttonText.forEach(function(e) {
     const buttons = document.createElement('button');
-    buttons.classList.add('optionBtn');
+    buttons.setAttribute('id', e);
     buttons.textContent = e;
     buttonContainer.appendChild(buttons);
 });
 
+const reset = document.getElementById('Clear');
+reset.addEventListener('click', () => location.reload());
+
+const fill = document.getElementById('Fill');
+fill.addEventListener('click', changeBackgroundColor)
