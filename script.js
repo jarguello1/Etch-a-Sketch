@@ -41,6 +41,7 @@ function createBoxes (dimensions) {
     for (let i = 0; i < boxDimensions*boxDimensions; i++) {
         const gridSquare = document.createElement('div');
         gridSquare.classList.add('gridSquare');
+        gridSquare.setAttribute('style', 'background: white;'); 
         grid.appendChild(gridSquare);
         gridSquare.addEventListener('mouseover', changeColorBlack)
     }
@@ -58,9 +59,16 @@ function deleteBoxes() {
 let dimensions = 16;
 createBoxes(dimensions);
 
+function clearGrid() {
+    const block = document.querySelectorAll('.gridSquare');
+    block.forEach(square => {
+        square.setAttribute('style', 'background: white;'); 
+    });
+}
+
 // changes all the boxes to one color
 function fillGrid() {
-    let block = document.querySelectorAll('.gridSquare');
+    const block = document.querySelectorAll('.gridSquare');
     block.forEach(square => {
         square.setAttribute('style', 'background: black;'); 
     });
@@ -82,6 +90,9 @@ buttonText.forEach(function(e) {
 //reloads page
 const reset = document.getElementById('Reset');
 reset.addEventListener('click', () => location.reload());
+
+const clear = document.getElementById('Clear');
+clear.addEventListener('click', clearGrid);
 
 //changes background color of the entire grid to black when fill button is pressed.
 const fill = document.getElementById('Fill');
