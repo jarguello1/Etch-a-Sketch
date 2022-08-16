@@ -37,9 +37,9 @@ container.appendChild(buttonContainer);
 
 //Create buttons for current options
 let buttonText = ['Toggle Color', 'Toggle Rainbow', 'Toggle Fill', 'Clear']
-buttonText.forEach(function(e1) {
+buttonText.forEach(function(e) {
     const buttons = document.createElement('button');
     buttons.classList.add('optionBtn');
-    buttons.textContent = "I'm a button.";
+    buttons.textContent = e;
     buttonContainer.appendChild(buttons);
 });
