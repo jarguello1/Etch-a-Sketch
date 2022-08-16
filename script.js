@@ -12,11 +12,15 @@ title.textContent = 'Etch-a-Sketch';
 
 body.appendChild(title);
 
+//create sizeButton 
+sizeButton.setAttribute('id', 'size');
+sizeButton.textContent = "Change Number of Boxes";
+sizeButton.addEventListener('click', changeBoxSize);
+body.appendChild(sizeButton);
 
 
 //create div container to hold grid
 container.setAttribute('id', 'container');
-
 body.appendChild(container);
 
 //create grid div
@@ -25,26 +29,28 @@ grid.setAttribute('id', 'grid');
 
 container.appendChild(grid);
 
+// function to change color of the gridboxes
 function changeColorBlack(e) {
     let block = e.target;
     block.setAttribute('style', 'background: black;'); 
 }
 
-function changeColorWhite(e) {
-    let block = e.target;
-    block.setAttribute('style', 'background: black;'); 
+//fucntion to create boxes in the grid
+function createBoxes (dimensions) {
+    let boxDimensions = dimensions;
+    for (let i = 0; i < boxDimensions*boxDimensions; i++) {
+        const gridSquare = document.createElement('div');
+        gridSquare.classList.add('gridSquare');
+        gridSquare.setAttribute('onClick', 'white')
+        grid.appendChild(gridSquare);
+        gridSquare.addEventListener('mouseover', changeColorBlack)
+    }
 }
 
-let boxDimensions = 16;
+//initialize box with a 16x16 grid
 
-//Create boxes in the grid
-for (let i = 0; i < boxDimensions*boxDimensions; i++) {
-    const gridSquare = document.createElement('div');
-    gridSquare.classList.add('gridSquare');
-    grid.appendChild(gridSquare);
-    gridSquare.addEventListener('mouseover', changeColorBlack)
-
-}
+let dimensions = 16;
+createBoxes(dimensions);
 
 function changeBackgroundColor() {
     let block = document.getElementById('grid')
@@ -56,7 +62,7 @@ buttonContainer.setAttribute('id', 'buttonContainer');
 container.appendChild(buttonContainer);
 
 //Create buttons for current options
-let buttonText = ['Eraser', 'Rainbow', 'Fill', 'Clear']
+let buttonText = ['Fill', 'Clear']
 buttonText.forEach(function(e) {
     const buttons = document.createElement('button');
     buttons.setAttribute('id', e);
@@ -67,6 +73,7 @@ buttonText.forEach(function(e) {
 const reset = document.getElementById('Clear');
 reset.addEventListener('click', () => location.reload());
 
+
 const fill = document.getElementById('Fill');
 fill.addEventListener('click', changeBackgroundColor)
 
@@ -75,11 +82,8 @@ function changeBoxSize() {
     let sizeNumber = parseInt(size);
     if (sizeNumber > 0 && sizeNumber < 101) {
         boxDimensions = sizeNumber;
+    } else {
+        alert('Invalid entry, please try again.')
     }
 }
 
-//create sizeButton 
-sizeButton.setAttribute('id', 'size');
-sizeButton.textContent = "Change Number of Boxes";
-sizeButton.addEventListener('click', changeBoxSize);
-body.appendChild(sizeButton);
