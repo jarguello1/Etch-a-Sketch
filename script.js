@@ -26,13 +26,16 @@ body.appendChild(container);
 //create grid div
 const grid = document.createElement('div');
 grid.setAttribute('id', 'grid');
-
 container.appendChild(grid);
+
+//initialize box with a 16x16 grid
+let dimensions = 16;
+createBoxes(dimensions);
 
 let currentColor = 'black';
 
 // function to change color of the gridboxes
-function changeColorBlack(e) {
+function changeColor(e) {
     let block = e.target;
     block.style.backgroundColor = currentColor; 
 }
@@ -45,7 +48,7 @@ function createBoxes (dimensions) {
         gridSquare.classList.add('gridSquare');
         gridSquare.setAttribute('style', 'background: white;'); 
         grid.appendChild(gridSquare);
-        gridSquare.addEventListener('mouseover', changeColorBlack)
+        gridSquare.addEventListener('mouseover', changeColor);
     }
 }
 
@@ -57,9 +60,6 @@ function deleteBoxes() {
     });
 }
 
-//initialize box with a 16x16 grid
-let dimensions = 16;
-createBoxes(dimensions);
 
 function clearGrid() {
     const block = document.querySelectorAll('.gridSquare');
@@ -81,7 +81,7 @@ buttonContainer.setAttribute('id', 'buttonContainer');
 container.appendChild(buttonContainer);
 
 //Create buttons for current options
-let buttonText = ['Fill', 'Clear', 'Reset']
+let buttonText = ['fill', 'clear', 'reset']
 buttonText.forEach(function(e) {
     const buttons = document.createElement('button');
     buttons.setAttribute('id', e);
@@ -90,15 +90,21 @@ buttonText.forEach(function(e) {
 });
 
 //reloads page
-const reset = document.getElementById('Reset');
+const reset = document.getElementById('reset');
+reset.textContent = "Reload Page"
 reset.addEventListener('click', () => location.reload());
 
-const clear = document.getElementById('Clear');
+//Clears grid without reloading page
+const clear = document.getElementById('clear');
+clear.textContent = "Clear";
 clear.addEventListener('click', clearGrid);
 
 //changes background color of the entire grid to black when fill button is pressed.
-const fill = document.getElementById('Fill');
+const fill = document.getElementById('fill');
+fill.textContent = "Fill";
 fill.addEventListener('click', fillGrid)
+
+
 
 //prompt user for dimensions they would like
 function changeBoxSize() {
