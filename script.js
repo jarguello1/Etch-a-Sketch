@@ -52,17 +52,18 @@ function deleteBoxes() {
     gridSquare.forEach(square => {
         square.remove();
     });
-  
 }
 
 //initialize box with a 16x16 grid
-
 let dimensions = 16;
 createBoxes(dimensions);
 
-function changeBackgroundColor() {
-    let block = document.getElementById('grid')
-    block.setAttribute('style', 'background: black;')
+// changes all the boxes to one color
+function fillGrid() {
+    let block = document.querySelectorAll('.gridSquare');
+    block.forEach(square => {
+        square.setAttribute('style', 'background: black;'); 
+    });
 }
 
 //Create container for the buttons that toggle different options
@@ -78,13 +79,15 @@ buttonText.forEach(function(e) {
     buttonContainer.appendChild(buttons);
 });
 
+//reloads page
 const reset = document.getElementById('Reset');
 reset.addEventListener('click', () => location.reload());
 
-
+//changes background color of the entire grid to black when fill button is pressed.
 const fill = document.getElementById('Fill');
-fill.addEventListener('click', changeBackgroundColor)
+fill.addEventListener('click', fillGrid)
 
+//prompt user for dimensions they would like
 function changeBoxSize() {
     let size = prompt("What size box would you like?\n Up to 100x100.")
     let sizeNumber = parseInt(size);
@@ -95,6 +98,7 @@ function changeBoxSize() {
     }
 }
 
+//combine changeBoxSize, deleteBoxes, and createBoxes functions into one
 function newGrid() {
     changeBoxSize()
     deleteBoxes();
