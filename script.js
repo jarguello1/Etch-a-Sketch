@@ -43,10 +43,13 @@ function changeColor(e) {
 //Create boxes in the grid
 function createBoxes (dimensions) {
     let boxDimensions = dimensions;
+    let size = (800 / boxDimensions) - 2;
     for (let i = 0; i < boxDimensions*boxDimensions; i++) {
         const gridSquare = document.createElement('div');
         gridSquare.classList.add('gridSquare');
-        gridSquare.setAttribute('style', 'background: white;'); 
+        gridSquare.setAttribute('style', 'background: white;');
+        gridSquare.style.height = `${size}px`
+        gridSquare.style.width = `${size}px`
         grid.appendChild(gridSquare);
         gridSquare.addEventListener('mouseover', changeColor);
     }
@@ -66,6 +69,7 @@ function clearGrid() {
     block.forEach(square => {
         square.setAttribute('style', 'background: white;'); 
     });
+    resizeBoxes();
 }
 
 // changes all the boxes to one color
@@ -74,6 +78,7 @@ function fillGrid() {
     block.forEach(square => {
         square.setAttribute('style', 'background: black;'); 
     });
+    resizeBoxes();
 }
 
 //Create container for the buttons that toggle different options
