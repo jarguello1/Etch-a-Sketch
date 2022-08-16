@@ -15,7 +15,7 @@ body.appendChild(title);
 //create sizeButton 
 sizeButton.setAttribute('id', 'size');
 sizeButton.textContent = "Change Number of Boxes";
-sizeButton.addEventListener('click', changeBoxSize);
+sizeButton.addEventListener('click', newGrid);
 body.appendChild(sizeButton);
 
 
@@ -35,16 +35,24 @@ function changeColorBlack(e) {
     block.setAttribute('style', 'background: black;'); 
 }
 
-//fucntion to create boxes in the grid
+//Create boxes in the grid
 function createBoxes (dimensions) {
     let boxDimensions = dimensions;
     for (let i = 0; i < boxDimensions*boxDimensions; i++) {
         const gridSquare = document.createElement('div');
         gridSquare.classList.add('gridSquare');
-        gridSquare.setAttribute('onClick', 'white')
         grid.appendChild(gridSquare);
         gridSquare.addEventListener('mouseover', changeColorBlack)
     }
+}
+
+//delete existing boxes
+function deleteBoxes() {
+    const gridSquare = document.querySelectorAll('.gridSquare');
+    gridSquare.forEach(square => {
+        square.remove();
+    });
+  
 }
 
 //initialize box with a 16x16 grid
@@ -62,7 +70,7 @@ buttonContainer.setAttribute('id', 'buttonContainer');
 container.appendChild(buttonContainer);
 
 //Create buttons for current options
-let buttonText = ['Fill', 'Clear']
+let buttonText = ['Fill', 'Clear', 'Reset']
 buttonText.forEach(function(e) {
     const buttons = document.createElement('button');
     buttons.setAttribute('id', e);
@@ -70,7 +78,7 @@ buttonText.forEach(function(e) {
     buttonContainer.appendChild(buttons);
 });
 
-const reset = document.getElementById('Clear');
+const reset = document.getElementById('Reset');
 reset.addEventListener('click', () => location.reload());
 
 
@@ -81,9 +89,14 @@ function changeBoxSize() {
     let size = prompt("What size box would you like?\n Up to 100x100.")
     let sizeNumber = parseInt(size);
     if (sizeNumber > 0 && sizeNumber < 101) {
-        boxDimensions = sizeNumber;
+        dimensions = sizeNumber;
     } else {
         alert('Invalid entry, please try again.')
     }
 }
 
+function newGrid() {
+    changeBoxSize()
+    deleteBoxes();
+    createBoxes(dimensions);
+}
