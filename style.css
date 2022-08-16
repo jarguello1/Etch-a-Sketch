@@ -25,11 +25,11 @@ body {
 	background-color: white;
 	display: flex;
 	flex-wrap: wrap;
-	width: 600px;
+	width: 800px;
 }
 
 .gridSquare {
-	height: 20px;
-	width: 20px;
+	height: 48px;
+	width: 48px;
 	border: 1px solid rgb(155, 155, 155);
 }
