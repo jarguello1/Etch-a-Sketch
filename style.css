@@ -10,6 +10,16 @@ body {
 	color: black;
 }
 
+#container {
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+#buttonContainer {
+	display: flex;
+    flex-direction: column;
+}
+
 #grid {
 	border: 2px solid black;
 	background-color: white;

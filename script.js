@@ -19,3 +19,15 @@ grid.setAttribute('id', 'grid');
 grid.textContent = 'The grid will go here.';
 
 container.appendChild(grid);
+
+const buttonContainer = document.createElement('div');
+buttonContainer.setAttribute('id', 'buttonContainer');
+container.appendChild(buttonContainer);
+
+let buttonText = ['Toggle Color', 'Toggle Rainbow', 'Toggle Fill', 'Clear']
+buttonText.forEach(function(e1) {
+    const buttons = document.createElement('button');
+    buttons.classList.add('optionBtn');
+    buttons.textContent = "I'm a button.";
+    buttonContainer.appendChild(buttons);
+});
